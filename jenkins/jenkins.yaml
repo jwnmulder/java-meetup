@@ -1,0 +1,30 @@
+jenkins:
+  authorizationStrategy: unsecured
+  numExecutors: 2
+  scmCheckoutRetryCount: 2
+tool:
+  git:
+    installations:
+      - name: Default
+        home: /usr/bin/git
+jobs:
+  - script: >
+      folder('meetup')
+  - script: >
+      pipelineJob('meetup/test1') {
+        definition {
+          cps {
+            script("""\
+              pipeline {
+                agent any
+                stages {
+                  stage ('test') {
+                    steps {
+                      echo "hello"
+                    }
+                  }
+                }
+              }""".stripIndent())
+          }
+        }
+      }

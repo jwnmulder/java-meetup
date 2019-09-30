@@ -1,0 +1,15 @@
+# see https://github.com/oleg-nenashev/demo-jenkins-config-as-code/blob/master/plugins.txt 
+
+git
+locale
+configuration-as-code
+cloudbees-folder
+job-dsl
+junit
+workflow-aggregator
+ansicolor
+
+#blueocean:latest
+#pipeline-maven:latest
+#configuration-as-code-support:latest
+#job-dsl:latest
