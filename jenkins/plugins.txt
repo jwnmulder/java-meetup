@@ -8,8 +8,5 @@ job-dsl
 junit
 workflow-aggregator
 ansicolor
-
-#blueocean:latest
-#pipeline-maven:latest
-#configuration-as-code-support:latest
-#job-dsl:latest
+github
+github-branch-source

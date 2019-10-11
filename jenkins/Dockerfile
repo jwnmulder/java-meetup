@@ -23,16 +23,10 @@ RUN groupadd docker && \
 
 USER jenkins
 
-
-ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
-ENV CASC_JENKINS_CONFIG /var/jenkins_home/jenkins.yaml
-
-COPY jenkins.yaml /var/jenkins_home/jenkins.yaml
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
-COPY init_scripts/ /usr/share/jenkins/ref/init.groovy.d/
-
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
-#RUN /usr/local/bin/install-plugins.sh configuration-as-code
+COPY init_scripts/ /usr/share/jenkins/ref/init.groovy.d/
 
-
+ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false -Djenkins.model.Jenkins.workspacesDir='${JENKINS_HOME}/workspace/${ITEM_FULL_NAME}'
+ENV CASC_JENKINS_CONFIG /var/jenkins_home/jcasc/jenkins.yaml

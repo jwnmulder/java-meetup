@@ -1,9 +1,47 @@
-version: '3'
+version: '3.7'
 services:
   jenkins:
     build: jenkins
     ports:
       - "8080:8080"
+    depends_on:
+      - init
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./jenkins/jcasc:/var/jenkins_home/jcasc
+      - jenkins-workspace:/var/jenkins_home/workspace
+      - jenkins-jobs:/var/jenkins_home/jobs
+    deploy:
+      resources:
+        limits:
+          memory: 512M
     privileged: true
+    secrets:
+      - source: ssh-github-java-meetup-key
+      - source: github-username
+      - source: github-password
+  smee:
+    image: deltaprojects/smee-client@sha256:acf90abd313cc7d11091bd5d6eb306142ffaedf17ba781bed039000bd313d294
+    command: smee-client -u https://smee.io/${SMEE_CHANNEL:-your-smee-channel-id} -t http://jenkins:8080/github-webhook/
+  init:
+    image: kroniak/ssh-client:3.9
+    command: |
+      /bin/bash -c "\
+      chown -R 1000:1000 /mnt/jenkins-volumes; \
+      ssh-keygen -t ed25519 -f /var/.secrets/ssh-github-java-meetup-key || true"
+    volumes:
+      - .secrets:/var/.secrets
+      - jenkins-workspace:/mnt/jenkins-volumes/workspace
+      - jenkins-jobs:/mnt/jenkins-volumes/jobs
+
+secrets:
+  ssh-github-java-meetup-key:
+    file: .secrets/ssh-github-java-meetup-key
+  github-username:
+    file: .secrets/github-username
+  github-password:
+    file: .secrets/github-password
+
+volumes:
+  jenkins-workspace:
+  jenkins-jobs:

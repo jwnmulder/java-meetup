@@ -1,0 +1,39 @@
+jenkins:
+  authorizationStrategy: unsecured
+  numExecutors: 2
+  scmCheckoutRetryCount: 2
+tool:
+  git:
+    installations:
+      - name: Default
+        home: /usr/bin/git
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+        - basicSSHUserPrivateKey:
+            scope: GLOBAL
+            id: ssh-github-java-meetup-key
+            description: "SSH key for github access"
+            privateKeySource:
+              directEntry:
+                privateKey: ${ssh-github-java-meetup-key}
+        - usernamePassword:
+            scope: GLOBAL
+            id: github
+            description: "GitHub PAT"
+            username: ${github-username}
+            password: ${github-password}
+      - domain:
+          name: "github.com"
+          description: "guthub.com domain"
+          specifications:
+            - hostnameSpecification:
+                includes: "*.github.com"
+jobs:
+  - script: >
+      folder('meetup')
+  - file: /var/jenkins_home/jcasc/jobs/meetup/java-meetup-quarkus.groovy
+unclassified:
+  globalDefaultFlowDurabilityLevel:
+    durabilityHint: PERFORMANCE_OPTIMIZED
