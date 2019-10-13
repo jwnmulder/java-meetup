@@ -20,6 +20,8 @@ services:
       - source: ssh-github-java-meetup-key
       - source: github-username
       - source: github-password
+      - source: docker-hub-username
+      - source: docker-hub-password
   smee:
     image: deltaprojects/smee-client@sha256:acf90abd313cc7d11091bd5d6eb306142ffaedf17ba781bed039000bd313d294
     command: smee-client -u https://smee.io/${SMEE_CHANNEL:-your-smee-channel-id} -t http://jenkins:8080/github-webhook/
@@ -41,6 +43,10 @@ secrets:
     file: .secrets/github-username
   github-password:
     file: .secrets/github-password
+  docker-hub-username:
+    file: .secrets/docker-hub-username
+  docker-hub-password:
+    file: .secrets/docker-hub-password
 
 volumes:
   jenkins-workspace:
