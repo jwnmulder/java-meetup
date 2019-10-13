@@ -43,6 +43,13 @@ credentials:
               description: "Docker Hub PAT"
               username: ${docker-hub-username}
               password: ${docker-hub-password}
+      - credentials:
+          - file:
+              scope: GLOBAL
+              id: kubectl-config
+              description: "Kubectl config for docker-for-desktop"
+              fileName: "kubectl-config-docker-for-desktop.yaml"
+              secretBytes: ${kubectl-encoded-config}
 jobs:
   - script: >
       folder('meetup')

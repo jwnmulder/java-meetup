@@ -10,3 +10,6 @@ workflow-aggregator
 ansicolor
 github
 github-branch-source
+badge
+yet-another-build-visualizer
+blueocean

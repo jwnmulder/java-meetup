@@ -22,6 +22,7 @@ services:
       - source: github-password
       - source: docker-hub-username
       - source: docker-hub-password
+      - source: kubectl-encoded-config
   smee:
     image: deltaprojects/smee-client@sha256:acf90abd313cc7d11091bd5d6eb306142ffaedf17ba781bed039000bd313d294
     command: smee-client -u https://smee.io/${SMEE_CHANNEL:-your-smee-channel-id} -t http://jenkins:8080/github-webhook/
@@ -30,9 +31,11 @@ services:
     command: |
       /bin/bash -c "\
       chown -R 1000:1000 /mnt/jenkins-volumes; \
+      cat /mnt/kube-conf-dir/config | base64 > /var/.secrets/kubectl-encoded-config
       ssh-keygen -t ed25519 -f /var/.secrets/ssh-github-java-meetup-key || true"
     volumes:
       - .secrets:/var/.secrets
+      - ${HOME}/.kube:/mnt/kube-conf-dir
       - jenkins-workspace:/mnt/jenkins-volumes/workspace
       - jenkins-jobs:/mnt/jenkins-volumes/jobs
 
@@ -47,6 +50,8 @@ secrets:
     file: .secrets/docker-hub-username
   docker-hub-password:
     file: .secrets/docker-hub-password
+  kubectl-encoded-config:
+    file: .secrets/kubectl-encoded-config
 
 volumes:
   jenkins-workspace:
