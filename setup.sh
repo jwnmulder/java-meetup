@@ -20,6 +20,9 @@ $KUBECTL_CMD apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.
 $KUBECTL_CMD rollout status -n kube-system --watch deployment kubernetes-dashboard
 KUBERNETES_DASHBOARD_URL=http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
 
+# Create the java-meetup namespace
+$KUBECTL_CMD create namespace java-meetup || true
+
 set +x
 
 # Print useful information

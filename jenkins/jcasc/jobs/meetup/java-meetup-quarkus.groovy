@@ -1,4 +1,4 @@
-multibranchPipelineJob('meetup/java-meetup-quarkus') {
+multibranchPipelineJob('java-meetup-quarkus') {
   branchSources {
     github {
       id('c7ce2794-b14e-469f-a113-87ffb0590b69')
