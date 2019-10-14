@@ -10,7 +10,13 @@ tool:
 credentials:
   system:
     domainCredentials:
-      - credentials:
+      - domain:
+          name: "github.com"
+          description: "github.com domain"
+          specifications:
+            - hostnameSpecification:
+                includes: "*.github.com"
+        credentials:
           - basicSSHUserPrivateKey:
               scope: GLOBAL
               id: ssh-github-java-meetup-key
@@ -18,7 +24,12 @@ credentials:
               privateKeySource:
                 directEntry:
                   privateKey: ${ssh-github-java-meetup-key}
-
+          - usernamePassword:
+              scope: GLOBAL
+              id: github
+              description: "GitHub PAT"
+              username: ${github-username}
+              password: ${github-password}
       - domain:
           name: "docker.com"
           description: "dokcer.com domain"
