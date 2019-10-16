@@ -94,3 +94,18 @@ Demo 4 - Testing on Kubernetes - multi branch pipeline
 
 * vscode: Jenkinsfile
 * http://kubernetes.docker.internal:31523 (check ./setup.sh for actual URL)
+* test multibranch pipeline webhook
+  ```bash
+  git checkout master
+  git branch -d feature/1 feature/2 feature/3
+  git push origin --delete feature/1 feature/2 feature/3
+  git checkout -b feature/1
+  git checkout -b feature/2
+  git checkout -b feature/3
+  git checkout master
+  git push --all origin
+  
+  kubectl get events -n java-meetup --watch
+  ```
+
+
