@@ -15,7 +15,7 @@ credentials:
           description: "github.com domain"
           specifications:
             - hostnameSpecification:
-                includes: "*.github.com"
+                includes: "github.com,*.github.com"
         credentials:
           - basicSSHUserPrivateKey:
               scope: GLOBAL
@@ -51,6 +51,9 @@ credentials:
               fileName: "kubectl-config-docker-for-desktop.yaml"
               secretBytes: ${kubectl-encoded-config}
 jobs:
+  - file: /var/jenkins_home/jcasc/jobs/meetup/java-meetup-1-build.groovy
+  - file: /var/jenkins_home/jcasc/jobs/meetup/java-meetup-2-docker-image-build.groovy
+  - file: /var/jenkins_home/jcasc/jobs/meetup/java-meetup-3-kubernetes-deploy.groovy
   - file: /var/jenkins_home/jcasc/jobs/meetup/java-meetup-quarkus.groovy
 unclassified:
   globalDefaultFlowDurabilityLevel:
