@@ -58,7 +58,7 @@ Provision kubernetes with some default demo deployments. After running the scrip
 If something doesn't work in Docker for Desktop, try the following
 ```bash
 # Check for any errors in the docker log
-tail -f /c/Users/jan-willem/AppData/Local/Docker/log.txt
+tail -f /c/Users/<username>/AppData/Local/Docker/log.txt
 
 # If Kubernetes fails to start, remove all docker-for-desktop certificates.
 # These are automatically re-generated after a first restart
