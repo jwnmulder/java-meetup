@@ -68,6 +68,7 @@ rm -rf /c/ProgramData/DockerDesktop/pki
 # References
 * Jenkins Job DSL docs: https://jenkinsci.github.io/job-dsl-plugin
 
+# Demo
 Prepare:
 * kubectl delete ns java-meetup && kubectl create ns java-meetup
 
