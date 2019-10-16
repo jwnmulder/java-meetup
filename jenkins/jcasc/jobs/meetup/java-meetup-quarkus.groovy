@@ -4,7 +4,7 @@ multibranchPipelineJob('java-meetup-quarkus') {
       id('c7ce2794-b14e-469f-a113-87ffb0590b69')
       scanCredentialsId('github')
       checkoutCredentialsId('ssh-github-java-meetup-key')
-      repoOwner('jwnmulder')
+      repoOwner('isaaceindhoven')
       repository('java-meetup-quarkus')
     }
   }

@@ -6,8 +6,8 @@ pipelineJob('java-meetup-3-kubernetes-deploy') {
         git {
           remote {
             credentials('ssh-github-java-meetup-key')
-            github('jwnmulder/java-meetup-quarkus')
-            url('git@github.com:jwnmulder/java-meetup-quarkus.git')
+            github('isaaceindhoven/java-meetup-quarkus')
+            url('git@github.com:isaaceindhoven/java-meetup-quarkus.git')
           }
           branch('*/master')
           extensions {
