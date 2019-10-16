@@ -25,7 +25,7 @@ Before starting docker-compose, make sure you have created the following files
   * .secrets/github-password
 * .env file
   ```bash
-  SMEE_CHANNEL=hEvxmYGb7pgVdmC3
+  SMEE_CHANNEL=<channel id>
   HOME=<only needed on Windows, set to C:\Users\username>
   ```
 
@@ -89,7 +89,7 @@ Demo 3 - Kubernetes deployment
 * vscode: > kubectl get events -n java-meetup --watch
 * http://localhost:8080/blue/organizations/jenkins/java-meetup-3-kubernetes-deploy
 
-Demo 3 - Testing on Kubernetes - multi branch pipeline
+Demo 4 - Testing on Kubernetes - multi branch pipeline
 
 * vscode: Jenkinsfile
 * http://kubernetes.docker.internal:31523 (check ./setup.sh for actual URL)
