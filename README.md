@@ -74,13 +74,15 @@ Prepare:
 
 Demo 1 - Maven build using Jenkins & Docker
 
+* http://localhost:8080 (show jobs)
 * vscode: Jenkinsfile-1-build
 * http://localhost:8080/blue/organizations/jenkins/java-meetup-1-build
 
 Demo 2 - Docker build and push
 
+* http://localhost:8080 (show jobs)
 * vscode: Jenkinsfile-2-docker-image-build
-* http://localhost:8080/blue/organizations/jenkins/Jenkinsfile-2-docker-image-build
+* http://localhost:8080/blue/organizations/jenkins/java-meetup-2-docker-image-build
 * https://cloud.docker.com/u/jwnmulder/repository/docker/jwnmulder/java-meetup-quarkus
 
 Demo 3 - Kubernetes deployment
