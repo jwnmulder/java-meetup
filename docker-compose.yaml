@@ -30,8 +30,14 @@ services:
     image: kroniak/ssh-client:3.9
     command: |
       /bin/bash -c "\
+
+      # make sure all mounted volumes are owned by the jenkins user
       chown -R 1000:1000 /mnt/jenkins-volumes; \
+
+      # re-use the existing ./kube/config from the docker host
       cat /mnt/kube-conf-dir/config | base64 > /var/.secrets/kubectl-encoded-config
+
+      # If no SSH keypair exist yet for pulling, create one for demo purposes
       ssh-keygen -t ed25519 -f /var/.secrets/ssh-github-java-meetup-key || true"
     volumes:
       - .secrets:/var/.secrets

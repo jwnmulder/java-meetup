@@ -106,8 +106,5 @@ Demo 4 - Testing on Kubernetes - multi branch pipeline
   git checkout -b feature/3
   git checkout master
   git push --all origin
-  
   kubectl get events -n java-meetup --watch
   ```
-
-
